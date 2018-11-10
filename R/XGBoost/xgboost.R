@@ -16,7 +16,7 @@ colnames(wineData) = c(
 wineData$quality = factor(wineData$quality)
 
 library(caret)
-library(C50)
+library(xgboost)
 library(plyr)
 library(doSNOW)
 
@@ -35,8 +35,8 @@ set.seed(1)
 #Trene på treningsettet
 caret.cv <- train(quality ~ .,
                   data = wineData,
-                  method = "C5.0",
-                  tuneLength = 32,
+                  method = "xgbTree",
+                  tuneLength = 8,
                   trControl = train.control)
 
 #steng ned threadene
